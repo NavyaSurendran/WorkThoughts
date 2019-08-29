@@ -16,14 +16,14 @@ public class ProductServiceTest {
 
     @Before
     public void setup() throws Exception {
-        productService = new ProductService(Arrays.asList(
+        productService = new ProductServiceImpl(Arrays.asList(
                 new Product(1.50, "PROD_01", "Product 01"),
                 new Product(3.45, "PROD_02", "Product 02")
         ));
     }
 
     @Test
-    public void getProductCodes_shouldReturnAllCodes() throws Exception {
+    public void getProductCodesShouldReturnAllCodes() throws Exception {
         List<String> codes = productService.getProductCodes();
         assertEquals(2, codes.size());
         assertEquals("PROD_01", codes.get(0));
@@ -31,7 +31,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void getProduct_shouldReturnProductForKnownCode() throws Exception {
+    public void getProductShouldReturnProductForKnownCode() throws Exception {
         Product product = productService.getProduct("PROD_01");
         assertEquals("PROD_01", product.getProductCode());
         assertEquals("Product 01", product.getName());
@@ -39,7 +39,7 @@ public class ProductServiceTest {
     }
 
     @Test
-    public void getProduct_shouldReturnNullForUnknownCode() throws Exception {
+    public void getProductShouldReturnNullForUnknownCode() throws Exception {
         Product product = productService.getProduct("PROD_03");
         assertNull(product);
     }
